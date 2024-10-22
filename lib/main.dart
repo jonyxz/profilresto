@@ -27,32 +27,41 @@ class RestoApp extends StatelessWidget {
     return MaterialApp(
       title: "Profil Restoran",
       home: Scaffold(
-        backgroundColor: Color(0xFFFFF3E0),
+        backgroundColor: Color(0xFFfffdf5), // #fffdf5
         appBar: AppBar(
-            backgroundColor: Color.fromARGB(255, 83, 67, 40),
-            title: const Text("Profil Restoran")),
+          backgroundColor: Color(0xFFfffdf5), // #4d301b
+          title: const Text(
+            "Profil Restoran",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ),
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              teksKotak(
-                  Color.fromARGB(255, 83, 67, 40), restoData['name'] ?? ''),
+              teksKotak(Color(0xFF4d301b), restoData['name'] ?? ''), // #4d301b
               Image(image: AssetImage('assets/${restoData["image"] ?? ''}')),
               const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  btnContact(Icons.email, Colors.green[600],
+                  btnContact(
+                      Icons.email,
+                      Color(0xFF865b33), // #865b33
                       "mailto:${restoData['email'] ?? ''}?subject=Tanya%20Seputar%20Resto"),
-                  btnContact(Icons.phone, Colors.blueAccent,
+                  btnContact(
+                      Icons.phone,
+                      Color(0xFF865b33), // #865b33
                       "tel:${restoData['phone']}"),
-                  btnContact(Icons.map, Colors.indigo,
+                  btnContact(
+                      Icons.map,
+                      Color(0xFF865b33), // #865b33
                       "https://www.google.com/maps/search/?api=1&query=-6.982928,110.409208"), // Coordinates for UDINUS
                 ],
               ),
               const SizedBox(height: 10),
-              teksKotak(Color.fromARGB(255, 83, 67, 40), 'Deskripsi'),
+              teksKotak(Color(0xFF4d301b), 'Deskripsi'), // #4d301b
               Text(
                 restoData['desc'] ?? '',
                 style: const TextStyle(
@@ -60,7 +69,7 @@ class RestoApp extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 10),
-              teksKotak(Color.fromARGB(255, 83, 67, 40), 'List Menu'),
+              teksKotak(Color(0xFF4d301b), 'List Menu'), // #4d301b
               Text(
                 restoData['menu'] ?? '',
                 style: const TextStyle(
@@ -68,7 +77,7 @@ class RestoApp extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 10),
-              teksKotak(Color.fromARGB(255, 83, 67, 40), 'Alamat'),
+              teksKotak(Color(0xFF4d301b), 'Alamat'), // #4d301b
               Text(
                 restoData['address'] ?? '',
                 style: const TextStyle(
@@ -76,7 +85,7 @@ class RestoApp extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 10),
-              teksKotak(Color.fromARGB(255, 83, 67, 40), 'Jam Buka'),
+              teksKotak(Color(0xFF4d301b), 'Jam Buka'), // #4d301b
               Text(
                 restoData['openHours'] ?? '',
                 style: const TextStyle(
@@ -130,7 +139,7 @@ Row textAttribute(String judul, String teks) {
 Container teksKotak(Color bgColor, String teks) {
   return Container(
     padding: const EdgeInsets.all(10),
-    alignment: Alignment.center,
+    alignment: Alignment.centerLeft,
     width: double.infinity,
     decoration: BoxDecoration(color: bgColor),
     child: Text(
