@@ -16,7 +16,8 @@ class RestoApp extends StatelessWidget {
     restoData['image'] = 'gambarWarung.jpg';
     restoData['desc'] =
         'Rumah makan yang menyajikan makanan lezat dengan suasana nyaman. Cocok untuk makan bersama keluarga.';
-    restoData['menu'] = '1. Ayam Goreng\n2. Nasi Goreng\n3. Sate Ayam';
+    restoData['menu'] =
+        '1. Ayam Goreng\n2. Nasi Goreng\n3. Mie Goreng\n4. Sate Ayam\n5. Es Teh Manis';
     restoData['openHours'] =
         'Senin - Jumat: 08.00 - 21.00\nSabtu - Minggu: 09.00 - 22.00';
   }
@@ -30,7 +31,7 @@ class RestoApp extends StatelessWidget {
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(10),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               teksKotak(Colors.black, restoData['name'] ?? ''),
               Image(image: AssetImage('assets/${restoData["image"] ?? ''}')),
@@ -50,6 +51,30 @@ class RestoApp extends StatelessWidget {
               teksKotak(Colors.black38, 'Deskripsi'),
               Text(
                 restoData['desc'] ?? '',
+                style: const TextStyle(
+                  fontSize: 18,
+                ),
+              ),
+              const SizedBox(height: 10),
+              teksKotak(Colors.black38, 'List Menu'),
+              Text(
+                restoData['menu'] ?? '',
+                style: const TextStyle(
+                  fontSize: 18,
+                ),
+              ),
+              const SizedBox(height: 10),
+              teksKotak(Colors.black38, 'Alamat'),
+              Text(
+                restoData['address'] ?? '',
+                style: const TextStyle(
+                  fontSize: 18,
+                ),
+              ),
+              const SizedBox(height: 10),
+              teksKotak(Colors.black38, 'Jam Buka'),
+              Text(
+                restoData['openHours'] ?? '',
                 style: const TextStyle(
                   fontSize: 18,
                 ),
@@ -81,7 +106,7 @@ Row textAttribute(String judul, String teks) {
   return Row(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      Container(
+      SizedBox(
         width: 80,
         child: Text(
           '- $judul ',
