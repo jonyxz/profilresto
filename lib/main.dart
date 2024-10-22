@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 void main() {
-  runApp(MainApp());
+  runApp(RestoApp());
 }
 
-class MainApp extends StatelessWidget {
+class RestoApp extends StatelessWidget {
   final restoData = <String, String>{};
 
   RestoApp({super.key}) {
@@ -23,11 +23,100 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: "Profil Restoran",
       home: Scaffold(
         appBar: AppBar(title: const Text("Profil Restoran")),
+        body: SingleChildScrollView(
+          padding: const EdgeInsets.all(10),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              teksKotak(Colors.black, restoData['name'] ?? ''),
+              Image(image: AssetImage('assets/${restoData["image"] ?? ''}')),
+              const SizedBox(height: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  btnContact(Icons.email, Colors.green[600],
+                      "mailto:${restoData['email'] ?? ''}?subject=Tanya%20Seputar%20Resto"),
+                  btnContact(Icons.phone, Colors.blueAccent,
+                      "tel:${restoData['phone']}"),
+                  btnContact(Icons.map, Colors.indigo,
+                      "https://www.google.com/maps/search/?api=1&query=-6.982928,110.409208"), // Coordinates for UDINUS
+                ],
+              ),
+              const SizedBox(height: 10),
+              teksKotak(Colors.black38, 'Deskripsi'),
+              Text(
+                restoData['desc'] ?? '',
+                style: const TextStyle(
+                  fontSize: 18,
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
+  }
+}
+
+Expanded btnContact(IconData icon, var color, String uri) {
+  return Expanded(
+    child: ElevatedButton(
+      onPressed: () {
+        launch(uri);
+      },
+      style: ElevatedButton.styleFrom(
+          shape: const StadiumBorder(),
+          backgroundColor: color,
+          foregroundColor: Colors.white),
+      child: Icon(icon),
+    ),
+  );
+}
+
+Row textAttribute(String judul, String teks) {
+  return Row(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Container(
+        width: 80,
+        child: Text(
+          '- $judul ',
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+        ),
+      ),
+      Expanded(
+        child: Text(
+          ': $teks',
+          style: const TextStyle(fontSize: 16),
+        ),
+      ),
+    ],
+  );
+}
+
+Container teksKotak(Color bgColor, String teks) {
+  return Container(
+    padding: const EdgeInsets.all(10),
+    alignment: Alignment.center,
+    width: double.infinity,
+    decoration: BoxDecoration(color: bgColor),
+    child: Text(
+      teks,
+      style: const TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: 20,
+        color: Colors.white,
+      ),
+    ),
+  );
+}
+
+Future launch(String uri) async {
+  if (!await launchUrl(Uri.parse(uri))) {
+    throw Exception('Tidak dapat membuka: $uri');
   }
 }
