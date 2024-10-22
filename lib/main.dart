@@ -27,13 +27,17 @@ class RestoApp extends StatelessWidget {
     return MaterialApp(
       title: "Profil Restoran",
       home: Scaffold(
-        appBar: AppBar(title: const Text("Profil Restoran")),
+        backgroundColor: Color(0xFFFFF3E0),
+        appBar: AppBar(
+            backgroundColor: Color.fromARGB(255, 83, 67, 40),
+            title: const Text("Profil Restoran")),
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              teksKotak(Colors.black, restoData['name'] ?? ''),
+              teksKotak(
+                  Color.fromARGB(255, 83, 67, 40), restoData['name'] ?? ''),
               Image(image: AssetImage('assets/${restoData["image"] ?? ''}')),
               const SizedBox(height: 10),
               Row(
@@ -48,7 +52,7 @@ class RestoApp extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 10),
-              teksKotak(Colors.black38, 'Deskripsi'),
+              teksKotak(Color.fromARGB(255, 83, 67, 40), 'Deskripsi'),
               Text(
                 restoData['desc'] ?? '',
                 style: const TextStyle(
@@ -56,7 +60,7 @@ class RestoApp extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 10),
-              teksKotak(Colors.black38, 'List Menu'),
+              teksKotak(Color.fromARGB(255, 83, 67, 40), 'List Menu'),
               Text(
                 restoData['menu'] ?? '',
                 style: const TextStyle(
@@ -64,7 +68,7 @@ class RestoApp extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 10),
-              teksKotak(Colors.black38, 'Alamat'),
+              teksKotak(Color.fromARGB(255, 83, 67, 40), 'Alamat'),
               Text(
                 restoData['address'] ?? '',
                 style: const TextStyle(
@@ -72,7 +76,7 @@ class RestoApp extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 10),
-              teksKotak(Colors.black38, 'Jam Buka'),
+              teksKotak(Color.fromARGB(255, 83, 67, 40), 'Jam Buka'),
               Text(
                 restoData['openHours'] ?? '',
                 style: const TextStyle(
